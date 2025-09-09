@@ -94,44 +94,50 @@ const Index = () => {
       <Navbar />
       
       {/* Hero Section */}
-      <section id="home" className="relative pt-24 pb-20 px-4 text-center">
-        <div className="container mx-auto max-w-6xl">
-          {/* Hero Image */}
-          <div className="mb-12 relative">
-            <img
-              src={heroImage}
-              alt="TheraLink - AI-Powered Therapy Platform"
-              className="w-full max-w-4xl mx-auto rounded-2xl shadow-therapy-strong"
-            />
-            <div className="absolute inset-0 bg-gradient-to-t from-background/80 via-transparent to-transparent rounded-2xl" />
-          </div>
+      <section
+  id="home"
+  className="relative min-h-screen pt-24 pb-20 px-4 text-center"
+>
+  {/* Background Image for both Navbar + Hero */}
+  <div className="absolute inset-0 ">
+    <img
+      src={heroImage}
+      alt="TheraLink - AI-Powered Therapy Platform"
+      className="w-full h-full object-cover blur-[2px]"
+    />
+    <div className="absolute inset-0 bg-gradient-to-t from-background/80 via-transparent to-transparent" />
+  </div>
 
-          {/* Hero Content */}
-          <div className="relative z-10 max-w-4xl mx-auto">
-            <h1 className="text-5xl md:text-6xl font-bold mb-6 bg-gradient-primary bg-clip-text text-transparent">
-              TheraLink
-            </h1>
-            <p className="text-xl md:text-2xl text-muted-foreground mb-4 font-light">
-              AI-Powered Therapy Companion Platform
-            </p>
-            <p className="text-lg text-muted-foreground mb-12 max-w-2xl mx-auto leading-relaxed">
-              Bridging the gap between technology and human care. Connect with licensed therapists, 
-              access AI-powered mental health tools, and take control of your wellness journey.
-            </p>
+  {/* Navbar & Hero Content */}
+  <div className="relative z-10">
+    <Navbar />
 
-            {/* CTA Buttons */}
-            <div className="flex flex-col sm:flex-row gap-4 justify-center mb-16">
-              <Button variant="hero" size="xl" className="group">
-                Start Your Journey
-                <ChevronRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-therapy" />
-              </Button>
-              <Button variant="minimal" size="xl">
-                Learn More
-              </Button>
-            </div>
-          </div>
-        </div>
-      </section>
+    <div className="container mx-auto max-w-6xl mt-16">
+      <h1 className="text-5xl md:text-6xl font-bold mb-6 text-blue-900">
+        TheraLink
+      </h1>
+      <p className="text-xl md:text-2xl text-muted-foreground mb-4 font-light text-blue-100">
+        AI-Powered Therapy Companion Platform
+      </p>
+      <p className="text-lg text-muted-foreground mb-12 max-w-2xl mx-auto text-white leading-relaxed">
+        Bridging the gap between technology and human care. Connect with licensed therapists, 
+        access AI-powered mental health tools, and take control of your wellness journey.
+      </p>
+
+      {/* CTA Buttons */}
+      <div className="flex flex-col sm:flex-row gap-4 justify-center mb-16">
+        <Button variant="hero" size="xl" className="group">
+          Start Your Journey
+          <ChevronRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-therapy" />
+        </Button>
+        <Button variant="minimal" size="xl">
+          Learn More
+        </Button>
+      </div>
+    </div>
+  </div>
+</section>
+
 
       {/* About Section */}
       <section id="about" className="py-20 px-4 bg-card">
@@ -276,9 +282,12 @@ const Index = () => {
             <Button variant="minimal" size="xl" className="bg-white text-primary hover:bg-white/90">
               Get Started Today
             </Button>
-            <Button variant="outline" size="xl" className="border-white text-white hover:bg-white/10">
-              Schedule a Demo
-            </Button>
+            <Button size="xl"
+  className="px-6 py-3 rounded-lg border-2 border-blue-400 text-gray-800 font-semibold bg-transparent hover:bg-transparent focus:outline-none focus:ring-2 focus:ring-blue-400"
+>
+  Schedule a Demo
+</Button>
+
           </div>
         </div>
       </section>
@@ -298,7 +307,7 @@ const Index = () => {
             Bridging technology and human care for better mental health.
           </p>
           <p className="text-sm text-muted-foreground">
-            © 2024 TheraLink. All rights reserved. HIPAA Compliant Platform.
+            © 2025 TheraLink. All rights reserved. HIPAA Compliant Platform.
           </p>
         </div>
       </footer>
