@@ -23,9 +23,11 @@ import {
 } from "@/components/ui/card";
 import Navbar from "@/components/Navbar";
 import heroImage from "@/assets/hero-therapy.jpg";
+import { useNavigate } from "react-router-dom";
 
 const Index = () => {
   const [selectedRole, setSelectedRole] = useState<string | null>(null);
+  const navigate = useNavigate();
 
   const roles = [
     {
@@ -116,7 +118,9 @@ const Index = () => {
 
   const handleRoleSelect = (roleId: string) => {
     setSelectedRole(roleId);
-    console.log(`Selected role: ${roleId}`);
+    if (roleId === "patient") navigate("/dashboard/patient");
+    else if (roleId === "therapist") navigate("/dashboard/therapist");
+    else if (roleId === "admin") navigate("/dashboard/admin");
   };
 
   return (
@@ -152,7 +156,7 @@ const Index = () => {
           </p>
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center mb-16 animate-fadeIn delay-400">
-            <Button variant="hero" size="xl" className="group">
+            <Button variant="hero" size="xl" className="group" onClick={() => navigate('/neuronex')}>
               Take the First Step
               <ChevronRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-therapy" />
             </Button>
