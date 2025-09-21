@@ -791,12 +791,15 @@ export default function TherapistDashboard() {
 
 function StatCard({ title, value, icon }: { title: string; value: number | string; icon?: React.ReactNode }) {
   return (
-    <Card>
+    <Card className="bg-gradient-to-br from-primary/10 via-accent/10 to-secondary/10 border-0">
       <CardHeader className="pb-2">
-        <CardTitle className="text-sm text-muted-foreground flex items-center gap-2">{icon}{title}</CardTitle>
+        <CardTitle className="text-sm flex items-center gap-2">
+          <span className="inline-flex items-center justify-center p-1.5 rounded-md bg-background/60">{icon}</span>
+          {title}
+        </CardTitle>
       </CardHeader>
       <CardContent>
-        <div className="text-2xl font-bold">{value}</div>
+        <div className="text-3xl font-bold text-primary">{value}</div>
       </CardContent>
     </Card>
   );
