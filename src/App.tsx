@@ -8,6 +8,7 @@ import NotFound from "./pages/NotFound";
 import TherapistDashboard from "./pages/dashboard/Therapist";
 import PatientDashboard from "./pages/dashboard/Patient";
 import AdminDashboard from "./pages/dashboard/Admin";
+import SessionPage from "./pages/Session";
 
 const queryClient = new QueryClient();
 
