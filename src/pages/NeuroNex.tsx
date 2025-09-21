@@ -21,9 +21,16 @@ export default function NeuroNex() {
 
   const generateReply = (t: string) => {
     const l = t.toLowerCase();
+    if (/(i feel|feeling)?\s*(bad|sad|down|depressed|not good|terrible)/.test(l)) {
+      return "I'm here with you. What happened today? We can unpack it together, or I can guide a short grounding exercise.";
+    }
+    if (/(can we|let's)?\s*(talk|speak|chat)/.test(l) || l.includes("need to talk")) {
+      return "Absolutely—I'm here to talk now. What's coming up for you? If you'd like a live session, head to Appointments in your dashboard.";
+    }
     if (l.includes("prep")) return "I can help prepare for your session: set an intention and review recent reflections.";
     if (l.includes("anxiety")) return "Let's try a short grounding exercise: 5 senses check-in. Name 5 things you can see.";
     if (l.includes("resources")) return "I can recommend mindfulness PDFs, breathing videos, and CBT worksheets.";
+    if (l.includes("help")) return "You're not alone—share a bit more. If this is urgent, please contact local emergency services.";
     return "I'm here to listen and guide. Share what's on your mind, or ask for an exercise.";
   };
 
