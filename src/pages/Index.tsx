@@ -156,7 +156,7 @@ const Index = () => {
           </p>
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center mb-16 animate-fadeIn delay-400">
-            <Button variant="hero" size="xl" className="group">
+            <Button variant="hero" size="xl" className="group" onClick={() => navigate('/neuronex')}>
               Take the First Step
               <ChevronRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-therapy" />
             </Button>

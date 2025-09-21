@@ -9,6 +9,9 @@ import TherapistDashboard from "./pages/dashboard/Therapist";
 import PatientDashboard from "./pages/dashboard/Patient";
 import AdminDashboard from "./pages/dashboard/Admin";
 import SessionPage from "./pages/Session";
+import NeuroNex from "./pages/NeuroNex";
+import SignIn from "./pages/auth/SignIn";
+import SignUp from "./pages/auth/SignUp";
 
 const queryClient = new QueryClient();
 
@@ -24,6 +27,9 @@ const App = () => (
           <Route path="/dashboard/patient" element={<PatientDashboard />} />
           <Route path="/dashboard/admin" element={<AdminDashboard />} />
           <Route path="/session/:id" element={<SessionPage />} />
+          <Route path="/neuronex" element={<NeuroNex />} />
+          <Route path="/signin" element={<SignIn />} />
+          <Route path="/signup" element={<SignUp />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
