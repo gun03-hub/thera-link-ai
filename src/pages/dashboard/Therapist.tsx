@@ -154,6 +154,9 @@ export default function TherapistDashboard() {
   const [resources, setResources] = useState<ResourceItem[]>([]);
   const [invoices, setInvoices] = useState<InvoiceItem[]>([]);
 
+  const authUser = readLS<any>("theralink:auth:user", null);
+  const isTherapistPending = !!(authUser && authUser.role === "Therapist" && authUser.status !== "active");
+
   const [search, setSearch] = useState("");
   const [selectedClient, setSelectedClient] = useState<Client | null>(null);
   const [selectedDate, setSelectedDate] = useState<Date | undefined>(new Date());
