@@ -307,7 +307,7 @@ const Index = () => {
           </div>
 
           <div className="mt-12 text-center">
-            <Button variant="hero" size="lg">
+            <Button variant="hero" size="lg" onClick={()=> navigate('/neuronex')}>
               Start Your Journey
             </Button>
           </div>
@@ -332,6 +332,7 @@ const Index = () => {
               variant="minimal"
               size="xl"
               className="bg-white text-primary hover:bg-white/90"
+              onClick={() => navigate('/neuronex')}
             >
               Try AI Chat Now
             </Button>
