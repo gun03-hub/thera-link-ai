@@ -257,6 +257,21 @@ export default function TherapistDashboard() {
     return clients.filter((c) => c.name.toLowerCase().includes(q) || c.email.toLowerCase().includes(q));
   }, [clients, search]);
 
+  if (isTherapistPending) {
+    return (
+      <div className="min-h-screen flex items-center justify-center p-6">
+        <div className="max-w-lg text-center space-y-4">
+          <div className="text-2xl font-semibold">Therapist account pending verification</div>
+          <p className="text-muted-foreground">Your account is awaiting Admin approval. You will gain full access once verified.</p>
+          <div className="flex gap-2 justify-center">
+            <Button asChild variant="outline"><a href="/">Back to Home</a></Button>
+            <Button asChild><a href="/signin">Switch account</a></Button>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
   return (
     <SidebarProvider>
       <Sidebar collapsible="icon">
