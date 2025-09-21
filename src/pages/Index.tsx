@@ -23,6 +23,7 @@ import {
 } from "@/components/ui/card";
 import Navbar from "@/components/Navbar";
 import heroImage from "@/assets/hero-therapy.jpg";
+import { useNavigate } from "react-router-dom";
 
 const Index = () => {
   const [selectedRole, setSelectedRole] = useState<string | null>(null);
