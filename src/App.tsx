@@ -19,6 +19,9 @@ const App = () => (
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Index />} />
+          <Route path="/dashboard/therapist" element={<TherapistDashboard />} />
+          <Route path="/dashboard/patient" element={<PatientDashboard />} />
+          <Route path="/dashboard/admin" element={<AdminDashboard />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
