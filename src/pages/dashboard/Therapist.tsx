@@ -168,6 +168,12 @@ export default function TherapistDashboard() {
   ]);
   const [chatInput, setChatInput] = useState("");
 
+  // Resources form state
+  const [resTitle, setResTitle] = useState("");
+  const [resType, setResType] = useState<ResourceItem["type"]>("pdf");
+  const [resUrl, setResUrl] = useState("");
+  const [resShare, setResShare] = useState<string>("all");
+
   useEffect(() => {
     seedIfEmpty();
     setClients(readLS<Client[]>("theralink:clients", []));
@@ -518,11 +524,11 @@ export default function TherapistDashboard() {
                 <div className="grid md:grid-cols-3 gap-3">
                   <div className="grid gap-2">
                     <Label>Title</Label>
-                    <Input id="res-title" placeholder="Resource title" />
+                    <Input placeholder="Resource title" value={resTitle} onChange={(e)=>setResTitle(e.target.value)} />
                   </div>
                   <div className="grid gap-2">
                     <Label>Type</Label>
-                    <Select defaultValue="pdf">
+                    <Select value={resType} onValueChange={(v: ResourceItem["type"])=>setResType(v)}>
                       <SelectTrigger>
                         <SelectValue />
                       </SelectTrigger>
@@ -536,13 +542,13 @@ export default function TherapistDashboard() {
                   </div>
                   <div className="grid gap-2">
                     <Label>URL</Label>
-                    <Input id="res-url" placeholder="https://..." />
+                    <Input placeholder="https://..." value={resUrl} onChange={(e)=>setResUrl(e.target.value)} />
                   </div>
                 </div>
                 <div className="grid md:grid-cols-2 gap-3 mt-3">
                   <div className="grid gap-2">
                     <Label>Share with</Label>
-                    <Select defaultValue="all">
+                    <Select value={resShare} onValueChange={(v)=>setResShare(v)}>
                       <SelectTrigger>
                         <SelectValue />
                       </SelectTrigger>
@@ -558,25 +564,15 @@ export default function TherapistDashboard() {
                     <Button
                       className="w-full"
                       onClick={() => {
-                        const titleEl = document.getElementById("res-title") as HTMLInputElement | null;
-                        const urlEl = document.getElementById("res-url") as HTMLInputElement | null;
-                        const typeEl = (document.querySelector('[data-state="open"][role="combobox"]')?.getAttribute('aria-controls') || '')
-                          ? undefined
-                          : undefined;
-                        const title = titleEl?.value.trim() || "";
-                        const url = urlEl?.value.trim() || "";
-                        const typeSelect = document.querySelector('#resources [data-state="open"] ~ div [data-radix-select-viewport] [data-state="checked"]') as HTMLElement | null;
-                        const typeText = typeSelect?.textContent?.toLowerCase() as ResourceItem["type"] | undefined;
-                        const shareSelect = document.querySelector('#resources [data-state="open"] ~ div [data-radix-select-viewport] [data-state="checked"]') as HTMLElement | null;
-                        // Fallbacks if querying open portal fails: default to pdf and all
-                        const type: ResourceItem["type"] = typeText || "pdf";
-                        const shareValue = (document.querySelectorAll('#resources [role="combobox"]')[1] as HTMLElement | undefined)?.getAttribute('data-value') || "all";
-
+                        const title = resTitle.trim();
+                        const url = resUrl.trim();
                         if (!title || !url) return;
-                        const sharedWithClientIds = shareValue === "all" ? clients.filter(c=>c.status==='active').map((c)=>c.id) : [shareValue];
-                        handleShareResource({ title, url, type, sharedWithClientIds });
-                        if (titleEl) titleEl.value = "";
-                        if (urlEl) urlEl.value = "";
+                        const sharedWithClientIds = resShare === "all" ? clients.filter(c=>c.status==='active').map((c)=>c.id) : [resShare];
+                        handleShareResource({ title, url, type: resType, sharedWithClientIds });
+                        setResTitle("");
+                        setResUrl("");
+                        setResType("pdf");
+                        setResShare("all");
                       }}
                     >
                       Add resource
