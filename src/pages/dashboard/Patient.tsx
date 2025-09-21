@@ -73,7 +73,6 @@ export default function PatientDashboard() {
   const [mood, setMood] = useState(5);
 
   useEffect(() => {
-    // Seed minimal demo data tied to a single patient view
     const seedAppts = readLS<Appointment[]>("theralink:patient:appointments", []);
     if (seedAppts.length === 0) {
       const today = new Date();
@@ -84,8 +83,21 @@ export default function PatientDashboard() {
       ];
       writeLS("theralink:patient:appointments", base);
     }
+
+    let cis = readLS<CheckIn[]>("theralink:patient:checkins", []);
+    if (cis.length === 0) {
+      const days = 10;
+      const arr: CheckIn[] = Array.from({ length: days }, (_, i) => {
+        const d = new Date();
+        d.setDate(d.getDate() - (days - 1 - i));
+        return { id: `ci_seed_${i}`, date: d.toISOString().slice(0,10), mood: 4 + Math.floor(Math.random()*6), note: "" };
+      });
+      cis = arr;
+      writeLS("theralink:patient:checkins", arr);
+    }
+
     setAppointments(readLS<Appointment[]>("theralink:patient:appointments", []));
-    setCheckIns(readLS<CheckIn[]>("theralink:patient:checkins", []));
+    setCheckIns(cis);
   }, []);
 
   const upcoming = useMemo(() => {
@@ -358,12 +370,15 @@ export default function PatientDashboard() {
 
 function StatCard({ title, value, icon }: { title: string; value: number | string; icon?: React.ReactNode }) {
   return (
-    <Card>
+    <Card className="bg-gradient-to-br from-primary/10 via-accent/10 to-secondary/10 border-0">
       <CardHeader className="pb-2">
-        <CardTitle className="text-sm text-muted-foreground flex items-center gap-2">{icon}{title}</CardTitle>
+        <CardTitle className="text-sm flex items-center gap-2">
+          <span className="inline-flex items-center justify-center p-1.5 rounded-md bg-background/60">{icon}</span>
+          {title}
+        </CardTitle>
       </CardHeader>
       <CardContent>
-        <div className="text-2xl font-bold">{value}</div>
+        <div className="text-3xl font-bold text-primary">{value}</div>
       </CardContent>
     </Card>
   );
