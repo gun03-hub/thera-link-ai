@@ -222,7 +222,7 @@ export default function PatientDashboard() {
                   </div>
                 </div>
                 <div className="flex gap-2 mt-3">
-                  <Input value={chatInput} onChange={(e)=>setChatInput(e.target.value)} placeholder="Share how you're feeling or ask for an exercise" />
+                  <Input value={chatInput} onChange={(e)=>setChatInput(e.target.value)} placeholder="Share how you're feeling or ask for an exercise" onKeyDown={(e)=>{ if(e.key==='Enter'){ e.preventDefault(); handleChatSend(); } }} />
                   <Button onClick={handleChatSend}>Send</Button>
                 </div>
               </CardContent>
