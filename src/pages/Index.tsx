@@ -118,7 +118,9 @@ const Index = () => {
 
   const handleRoleSelect = (roleId: string) => {
     setSelectedRole(roleId);
-    console.log(`Selected role: ${roleId}`);
+    if (roleId === "patient") navigate("/dashboard/patient");
+    else if (roleId === "therapist") navigate("/dashboard/therapist");
+    else if (roleId === "admin") navigate("/dashboard/admin");
   };
 
   return (
