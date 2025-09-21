@@ -27,6 +27,7 @@ import { useNavigate } from "react-router-dom";
 
 const Index = () => {
   const [selectedRole, setSelectedRole] = useState<string | null>(null);
+  const navigate = useNavigate();
 
   const roles = [
     {
