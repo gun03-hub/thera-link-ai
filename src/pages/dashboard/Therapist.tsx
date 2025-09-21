@@ -740,7 +740,7 @@ export default function TherapistDashboard() {
                   </div>
                 </div>
                 <div className="flex gap-2 mt-3">
-                  <Input value={chatInput} onChange={(e) => setChatInput(e.target.value)} placeholder="Ask for prep, summary, or resources" />
+                  <Input value={chatInput} onChange={(e) => setChatInput(e.target.value)} placeholder="Ask for prep, summary, or resources" onKeyDown={(e)=>{ if(e.key==='Enter'){ e.preventDefault(); handleChatSend(); } }} />
                   <Button onClick={handleChatSend}>Send</Button>
                 </div>
               </CardContent>
