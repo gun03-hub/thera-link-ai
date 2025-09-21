@@ -156,7 +156,7 @@ const Navbar = () => {
               >
                 Get Started
               </Button>
-              <Button variant="hero" className="w-full">
+              <Button variant="hero" className="w-full" onClick={() => (window.location.href = '/signin')}>
                 Sign In
               </Button>
             </div>
