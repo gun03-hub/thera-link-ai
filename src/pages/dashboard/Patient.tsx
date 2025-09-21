@@ -129,10 +129,17 @@ export default function PatientDashboard() {
 
   const generateAssistantReply = (text: string) => {
     const l = text.toLowerCase();
+    if (/(i feel|feeling)?\s*(bad|sad|down|depressed|not good|terrible)/.test(l)) {
+      return "I'm here with you. Want to share what made you feel this way today? We can take it one step at a time.";
+    }
+    if (/(can we|let's)?\s*(talk|speak|chat)/.test(l) || l.includes("need to talk")) {
+      return "I'm here to talk right now. What's on your mind? If you'd prefer a live session, you can join or schedule from the Appointments section.";
+    }
     if (l.includes("anxious") || l.includes("stress")) return "Let's try a 4-7-8 breathing exercise and a 2-minute grounding scan.";
     if (l.includes("sleep")) return "Consider a wind-down routine: no screens 1h before bed and a short body scan.";
     if (l.includes("journal")) return "Prompt: What went well today? Name three things you're grateful for.";
-    return "I can guide you with check-ins, exercises, and reflections. Tell me what's on your mind.";
+    if (l.includes("help")) return "You're not alone. Tell me a bit more about what's happening. If this is urgent, please contact local emergency services.";
+    return "I hear you. Tell me more—what's weighing on you most right now?";
   };
 
   const patientResources: ResourceItem[] = readLS("theralink:resources", []).filter((r: any) => Array.isArray(r.sharedWithClientIds));
